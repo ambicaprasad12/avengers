@@ -1,0 +1,42 @@
+package com.hexa;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class CookieDisplay extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		Cookie cook[] = request.getCookies();
+		String name =null;
+		String desig=null;
+		
+		PrintWriter out =response.getWriter();
+		
+		for(Cookie c:cook)
+		{
+			if(c.getName().equals("user"))
+			{
+				name=c.getValue();
+				}
+			else if(c.getName().equals("designation"))
+			{
+				desig=c.getValue();
+			}
+
+			out.println("Name stored in the cookie is : "+name+"    "+desig);
+	}
+		
+		//out.println("Name stored in the cookie is : "+name);
+
+		//out.println("Name stored in the cookie is : "+desig);
+
+}
+}
